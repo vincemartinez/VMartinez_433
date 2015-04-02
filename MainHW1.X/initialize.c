@@ -58,7 +58,8 @@ void PIC32startup(void){
     U1RXRbits.U1RXR=0b0011;
 
 
-    RPB7Rbits.RPB7R=0b0001; //sets up LED1 pin as a digital output
+    //RPB7Rbits.RPB7R=0b0001; //sets up LED1 pin as a digital output
+    TRISBbits.TRISB7=0;
 
     ANSELBbits.ANSB15=0; //sets up LED2 pin as digital PWM output
     RPB15Rbits.RPB15R=0b0101;
@@ -83,13 +84,6 @@ void PIC32startup(void){
     T2CONbits.TCS=0;
     T2CONbits.ON=1;
 
-    /*PR3=2-1; //sets up timer 3 to run at 40MHz
-    TMR3=0;
-    T3CONbits.TCKPS=0b000;
-    T3CONbits.TGATE=0;
-    T3CONbits.TCS=0;
-    T3CONbits.ON=1;
-*/
     ANSELAbits.ANSA0 = 1; //sets up A0 as AN0
     AD1CON3bits.ADCS = 3;
     AD1CHSbits.CH0SA = 0;
