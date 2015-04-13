@@ -70,3 +70,37 @@ int display_pixel_get(int row, int col) {
   return (gddram[pixel_pos(row,col)] & pixel_mask(row)) != 0;
 }
 
+void display_string(char *msg, int row, int col) {
+    
+    int i=0;
+    int j;
+    int k;
+    int colcount=0;
+    int nextrow=row;
+
+    while (msg[i]){
+
+        char loc = msg[i]-0x20;
+
+        for (k=0; k<5; k++){
+
+            char columnk=ASCII[loc][k];
+
+            for ((j=sizeof(char)*8)-1; j>=0; j--) {
+            display_pixel_set(nextrow,(col+colcount),(columnk&(1<<j)));
+            nextrow--;
+        }
+
+        nextrow=row;
+        colcount++;
+
+        }
+
+        //colcount++; // uncomment this for an extra space between letters
+        i++;
+
+    }
+
+
+    display_draw();
+}
