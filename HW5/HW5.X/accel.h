@@ -14,6 +14,8 @@
 
 #define TEMP_OUT_L 0x05 // temperature sensor register
 
+#define SENSITIVITY 0x21 //register for CTRL2 that sets the sensitivity
+
 // read len bytes from the specified register into data[]
 void acc_read_register(unsigned char reg, unsigned char data[], unsigned int len); 
 
@@ -21,5 +23,7 @@ void acc_read_register(unsigned char reg, unsigned char data[], unsigned int len
 void acc_write_register(unsigned char reg, unsigned char data);                    
 
 // initialize the accelerometer
-void acc_setup();                                                                  
+void acc_setup();
+
+void acc_bar_display();
 #endif

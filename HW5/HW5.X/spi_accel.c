@@ -7,7 +7,7 @@
 // SCK1 (B14)       -> SCL
 // some digital pin -> CS
 
-#define CS LATxbits.LATx# // replace x with some digital pin
+#define CS LATAbits.LATA4 // replace x with some digital pin
 
 // send a byte via spi and return the response
 unsigned char spi_io(unsigned char o) {
@@ -45,14 +45,14 @@ void acc_write_register(unsigned char reg, unsigned char data) {
 
 
 void acc_setup() {
-  TRISxbits.TRISx# = 0; // set CS to output and digital if necessary
+  TRISAbits.TRISA4 = 0; // set CS to output and digital if necessary
   CS = 1;
 
   // select a pin for SDI1
-  SDI1Rbits.SDI1R = 0bxxxx;
 
+  SDI1Rbits.SDI1R = 0b0001;
   // select a pin for SD01
-  RPx#Rbits.RPx#R = 0bxxxx;
+  RPB2Rbits.RPB2R = 0b0011;
 
   // Setup the master Master - SPI1
   // we manually control SS as a digital output 
@@ -75,6 +75,73 @@ void acc_setup() {
   acc_write_register(CTRL5, 0xF0); 
 
   // enable continuous reading of the magnetometer
-  acc_write_register(CTRL7, 0x0); 
+  acc_write_register(CTRL7, 0x0);
+
+  acc_write_register(SENSITIVITY, 0x0); // sets sensitivity to +-2g
 }
 
+void acc_bar_display(int x_accel_data, int y_accel_data) {
+
+    display_clear();
+
+    int i;
+    int j;
+
+    //x bars
+
+    int number_of_bars=x_accel_data/500;
+
+    if (number_of_bars<0) {
+
+        for (i=64; i<=(64-number_of_bars); i++) {
+
+            for (j=28; j<=36; j++) {
+                display_pixel_set(j, i, 1);
+            }
+
+        }
+
+    }
+
+    else {
+         for (i=64; i>=(64-number_of_bars); i--) {
+
+            for (j=28; j<=36; j++) {
+                display_pixel_set(j,i,1);
+            }
+
+        }
+    }
+       
+
+    //y bars
+
+    number_of_bars=y_accel_data/500;
+
+    if (number_of_bars<0) {
+
+        for (i=32; i<=(32-number_of_bars); i++) {
+
+            for (j=60; j<=68; j++) {
+                display_pixel_set(i, j, 1);
+            }
+
+        }
+
+    }
+
+    else {
+
+        for (i=32; i>=(32-number_of_bars); i--) {
+
+            for (j=60; j<=68; j++) {
+                display_pixel_set(i,j,1);
+            }
+
+        }
+
+    }
+        
+    display_draw();
+
+}
