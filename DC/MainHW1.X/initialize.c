@@ -61,8 +61,8 @@ void PIC32startup(void){
     //RPB7Rbits.RPB7R=0b0001; //sets up LED1 pin as a digital output
     TRISBbits.TRISB7=0;
 
-    ANSELBbits.ANSB15=0; //sets up LED2 pin as digital PWM output
-    RPB15Rbits.RPB15R=0b0101;
+    ANSELBbits.ANSB3=0; //sets up LED1 pin as digital PWM output
+    RPB3Rbits.RPB3R=0b0101;
 
 
     OC1CONbits.OCM=0b110; //enable OC1
