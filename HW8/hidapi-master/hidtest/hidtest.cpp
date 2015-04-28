@@ -71,10 +71,10 @@ int main(int argc, char* argv[])
 
 	printf("Input the row for the string to be displayed:\n");
 	int row=0;
-	scanf("%i", row);
+	//scanf("%i", row);
 
 	//printf("%d\n", row);
-	//printf("%s\n", message);
+	printf("%s\n", message);
 
 
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
