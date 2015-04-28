@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	printf("Input a string:\n");
 	char message[25];
 	memset(message, ' ', 25);
-	scanf("%s", message);
+	scanf("%[^\n]s", message);
 
 	printf("Input the row for the string to be displayed:\n");
 	int row=0;
