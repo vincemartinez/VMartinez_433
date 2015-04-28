@@ -67,14 +67,14 @@ int main(int argc, char* argv[])
 
 	printf("Input the row for the string to be displayed:\n");
 	int row=0;
-	scanf("%x", &row);
+	scanf("%d", &row);
 
 	buf[0] = 0x0;
 	printf("im here\n");
 	buf[1] = 0x2;
 	printf("im here\n");
 	buf[2] = row;
-	printf("%x",&buf[2]);
+	printf("%d",&buf[2]);
 
 	/*for (int i = 0; i < 25; i++){
 		printf("im here\n");
