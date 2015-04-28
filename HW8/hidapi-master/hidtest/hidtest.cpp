@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 	buf[1] = 0x2;
 	printf("im here\n");
 	buf[2] = row;
-	printf("%s",buf[2]);
+	printf("%s",&buf[2]);
 
 	/*for (int i = 0; i < 25; i++){
 		printf("im here\n");
