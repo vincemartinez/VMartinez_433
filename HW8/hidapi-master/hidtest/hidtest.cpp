@@ -70,19 +70,16 @@ int main(int argc, char* argv[])
 	scanf("%d", &row);
 
 	buf[0] = 0x0;
-	printf("im here\n");
 	buf[1] = 0x2;
-	printf("im here\n");
 	buf[2] = row;
-	printf("%d",buf[2]);
 
-	/*for (int i = 0; i < 25; i++){
+	for (int i = 0; i < 25; i++){
 		printf("im here\n");
 		buf[3 + i] = message[i];
 		printf("im here\n");
-		printf("%s\n", &buf[3 + i]);
+		printf("%c\n", buf[3 + i]);
 		printf("im here\n");
-	}*/
+	}
 
 
 
