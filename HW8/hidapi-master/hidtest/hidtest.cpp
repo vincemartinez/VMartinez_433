@@ -71,9 +71,9 @@ int main(int argc, char* argv[])
 
 	printf("Input the row for the string to be displayed:\n");
 	int row=0;
-	//scanf("%i", row);
+	scanf("%i", &row);
 
-	//printf("%d\n", row);
+	printf("%d\n", row);
 	printf("%s\n", message);
 
 
