@@ -82,15 +82,15 @@ int main(int argc, char* argv[])
 
 
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
-	buf[0] = 0x0;
-	buf[1] = 0x81;
-	res = hid_write(handle, buf, 65);
+	//buf[0] = 0x0;
+	//buf[1] = 0x81;
+	//res = hid_write(handle, buf, 65);
 
 	// Read requested state
 	res = hid_read(handle, buf, 65);
 
 	// Print out the returned buffer.
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 8; i++)
 		printf("buf[%d]: %d\n", i, buf[i]);
 
 	// Finalize the hidapi library
