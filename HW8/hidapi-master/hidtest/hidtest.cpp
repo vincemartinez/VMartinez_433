@@ -69,8 +69,17 @@ int main(int argc, char* argv[])
 	int row=0;
 	scanf("%d", &row);
 
-	printf("%d\n", row);
-	printf("%s\n", message);
+	buf[0] = 0x0;
+	buf[1] = 0x2;
+	buf[2] = row;
+
+	for (int i = 0; i < 25; i++){
+		buf[3 + i] = message[i];
+	}
+
+	printf("%s", buf);
+
+
 
 
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
