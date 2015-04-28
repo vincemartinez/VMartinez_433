@@ -59,6 +59,24 @@ int main(int argc, char* argv[])
 	buf[1] = 0x80;
 	res = hid_write(handle, buf, 65);
 
+	//request user input for row and string data and send to PIC
+	printf("Input a string:\n");
+	char message[25];
+	scanf("%s", message);
+	for (int i = 0; i < 25; i++){
+		if (message[i] == NULL){
+			message[i] = ' ';
+		}
+	}
+
+	printf("Input the row for the string to be displayed:\n");
+	int row = 0;
+	cin >> row;
+
+	printf("%s", message);
+	printf("%d", row);
+
+
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
 	buf[0] = 0x0;
 	buf[1] = 0x81;
