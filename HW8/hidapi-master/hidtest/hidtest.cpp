@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 		printf("im here\n");
 		buf[3 + i] = message[i];
 		printf("im here\n");
-		printf("%s\n", buf[3 + i]);
+		printf("%s\n", &buf[3 + i]);
 		printf("im here\n");
 	}
 
