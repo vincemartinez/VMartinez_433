@@ -73,8 +73,8 @@ int main(int argc, char* argv[])
 	int row;
 	scanf("%d", row);
 
-	printf("%d\n", row);
-	printf("%s\n", message);
+	//printf("%d\n", row);
+	//printf("%s\n", message);
 
 
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
