@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
 	printf("Input the row for the string to be displayed:\n");
 	int row = 0;
-	cin >> row;
+	scanf("%d", row);
 
 	printf("%s", message);
 	printf("%d", row);
