@@ -66,8 +66,8 @@ int main(int argc, char* argv[])
 	scanf("%[^\n]s", message);
 
 	printf("Input the row for the string to be displayed:\n");
-	int row=0;
-	scanf("%d", &row);
+	char row;
+	scanf("%c", &row);
 
 	buf[0] = 0x0;
 	printf("im here\n");
