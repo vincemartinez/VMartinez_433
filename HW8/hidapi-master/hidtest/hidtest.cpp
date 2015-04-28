@@ -129,6 +129,7 @@ int main(int argc, char* argv[])
 	res = hid_get_feature_report(handle, buf, sizeof(buf));
 	if (res < 0) {
 		printf("Unable to get a feature report.\n");
+		printf("I'm here.\n");
 		printf("%ls", hid_error(handle));
 	}
 	else {
@@ -139,7 +140,7 @@ int main(int argc, char* argv[])
 		printf("\n");
 	}
 
-	printf("I'm here.\n");
+	
 	memset(buf,0,sizeof(buf));
 	
 
