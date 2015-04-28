@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
 	//request user input for row and string data and send to PIC
 	printf("Input a string:\n");
-	char message[25];
+	unsigned char message[25];
 	memset(message, ' ', 25);
 	scanf("%[^\n]s", message);
 
@@ -74,15 +74,15 @@ int main(int argc, char* argv[])
 	buf[1] = 0x2;
 	printf("im here\n");
 	buf[2] = row;
-	printf("im here\n");
+	printf("%s",buf[2]);
 
-	for (int i = 0; i < 25; i++){
+	/*for (int i = 0; i < 25; i++){
 		printf("im here\n");
 		buf[3 + i] = message[i];
 		printf("im here\n");
 		printf("%s\n", &buf[3 + i]);
 		printf("im here\n");
-	}
+	}*/
 
 
 
