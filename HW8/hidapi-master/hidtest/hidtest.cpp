@@ -75,9 +75,8 @@ int main(int argc, char* argv[])
 
 	for (int i = 0; i < 25; i++){
 		buf[3 + i] = message[i];
+		printf("%s\n", buf[3 + i]);
 	}
-
-	printf("%s", buf);
 
 
 
