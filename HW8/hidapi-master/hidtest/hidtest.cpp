@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
 		buf[3 + i] = message[i];
 	}
 
-
+	res = hid_write(handle, buf, 65);
 
 
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
