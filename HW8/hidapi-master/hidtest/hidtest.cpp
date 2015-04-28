@@ -61,10 +61,10 @@ int main(int argc, char* argv[])
 
 	//request user input for row and string data and send to PIC
 	printf("Input a string:\n");
-	char message[25];
+	char message[25] = { 0 };
 	scanf("%s", message);
 	for (int i = 0; i < 25; i++){
-		if (message[i] == NULL){
+		if (message[i] == 0){
 			message[i] = ' ';
 		}
 	}
