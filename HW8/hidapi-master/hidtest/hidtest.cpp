@@ -140,6 +140,7 @@ int main(int argc, char* argv[])
 	}
 
 	memset(buf,0,sizeof(buf));
+	printf("I'm here.\n");
 
 	// Toggle LED (cmd 0x80). The first byte is the report number (0x1).
 	buf[0] = 0x1;
