@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 	res = hid_read(handle, buf, 65);
 
 	// Print out the returned buffer.
-	for (i = 0; i < 8; i++)
+	for (i = 0; i < 11; i++)
 		printf("buf[%d]: %d\n", i, buf[i]);
 
 	// Finalize the hidapi library
