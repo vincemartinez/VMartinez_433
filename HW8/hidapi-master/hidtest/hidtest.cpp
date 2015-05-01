@@ -73,12 +73,19 @@ int main(int argc, char* argv[])
 	buf[1] = 0x2;
 	buf[2] = row;
 
-	for (int i = 0; i < 25; i++){
+	/*for (int i = 0; i < 25; i++){
 		printf("im here\n");
 		buf[3 + i] = message[i];
 	}
+	*/
+
+	int data_points = 100;
+	int max_accel_reading = 16000;
+	unsigned char data[100];
+	char negative='-';
 
 	res = hid_write(handle, buf, 65);
+	
 
 
 	// Request state (cmd 0x81). The first byte is the report number (0x0).
@@ -87,7 +94,48 @@ int main(int argc, char* argv[])
 	//res = hid_write(handle, buf, 65);
 
 	// Read requested state
-	res = hid_read(handle, buf, 65);
+
+	/*FILE *ofp;
+	ofp = fopen("accels.txt", "w");
+	
+	while (i <= data_points){
+
+		res = hid_read(handle, buf, 65);
+
+		if (buf[1] == 0x01){
+
+			//print x value to file
+			if (buf[2] == 1){
+				fprintf(ofp, "%c%x   ", negative, buf[3]);
+			}
+			else {
+				fprintf(ofp, "%x   ", buf[3]);
+			}
+
+			//print y value to file
+			if (buf[4] == 1){
+				fprintf(ofp, "%c%x   ", negative, buf[5]);
+			}
+			else {
+				fprintf(ofp, "%x   ", buf[5]);
+			}
+
+			//print z value to file
+			if (buf[6] == 1){
+				fprintf(ofp, "%c%x   ", negative, buf[7]);
+			}
+			else {
+				fprintf(ofp, "%x   ", buf[7]);
+			}
+
+		}
+
+	}*/
+		
+
+
+
+
 
 	// Print out the returned buffer.
 	for (i = 0; i < 8; i++)
