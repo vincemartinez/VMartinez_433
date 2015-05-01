@@ -73,11 +73,11 @@ int main(int argc, char* argv[])
 	buf[1] = 0x2;
 	buf[2] = row;
 
-	/*for (int i = 0; i < 25; i++){
+	for (int i = 0; i < 25; i++){
 		printf("im here\n");
 		buf[3 + i] = message[i];
 	}
-	*/
+	
 
 	int data_points = 100;
 	int max_accel_reading = 16000;
