@@ -135,7 +135,7 @@ int main(int argc, char* argv[])
 
 
 
-
+	res = hid_read(handle, buf, 65);
 
 	// Print out the returned buffer.
 	for (i = 0; i < 8; i++)
