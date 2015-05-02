@@ -113,26 +113,26 @@ int main(int argc, char* argv[])
 
 			//print x value to file
 			if (buf[2] == 1){
-				fprintf(ofp, "%c%x   ", negative, buf[3]);
+				fprintf(ofp, "%c%d   ", negative, buf[3]);
 			}
 			else {
-				fprintf(ofp, "%x   ", buf[3]);
+				fprintf(ofp, "%d   ", buf[3]);
 			}
 
 			//print y value to file
 			if (buf[4] == 1){
-				fprintf(ofp, "%c%x   ", negative, buf[5]);
+				fprintf(ofp, "%c%d   ", negative, buf[5]);
 			}
 			else {
-				fprintf(ofp, "%x   ", buf[5]);
+				fprintf(ofp, "%d   ", buf[5]);
 			}
 
 			//print z value to file
 			if (buf[6] == 1){
-				fprintf(ofp, "%c%x   ", negative, buf[7]);
+				fprintf(ofp, "%c%d\n", negative, buf[7]);
 			}
 			else {
-				fprintf(ofp, "%x   ", buf[7]);
+				fprintf(ofp, "%d\n", buf[7]);
 			}
 
 			i++;
