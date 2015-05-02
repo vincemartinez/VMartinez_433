@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 	scanf("%d", &row);
 
 	buf[0] = 0x0;
-	buf[1] = 0x2;
+	buf[1] = 0x3;
 	buf[2] = row;
 
 	for (int i = 0; i < 25; i++){
@@ -78,10 +78,7 @@ int main(int argc, char* argv[])
 	}
 	
 
-	int data_points = 100;
-	int max_accel_reading = 16000;
-	unsigned char data[100];
-	char negative='-';
+
 
 	res = hid_write(handle, buf, 65);
 	
@@ -93,6 +90,17 @@ int main(int argc, char* argv[])
 	//res = hid_write(handle, buf, 65);
 
 	// Read requested state
+
+	buf[0] = 0x0;
+	buf[1] = 0x2;
+
+	int data_points = 100;
+	int max_accel_reading = 16000;
+	unsigned char data[100];
+	char negative = '-';
+
+	res = hid_write(handle, buf, 65);
+
 
 	FILE *ofp;
 	ofp = fopen("accels.txt", "w");
@@ -130,6 +138,10 @@ int main(int argc, char* argv[])
 			i++;
 
 		}
+
+		buf[0] = 0x0;
+		buf[1] = 0x2;
+		res = hid_write(handle, buf, 65);
 
 	}
 
