@@ -75,7 +75,6 @@ int main(int argc, char* argv[])
 
 	for (int i = 0; i < 25; i++){
 		buf[3 + i] = message[i];
-		printf("%c", buf[3+i]);
 	}
 	
 
@@ -95,7 +94,7 @@ int main(int argc, char* argv[])
 
 	// Read requested state
 
-	/*FILE *ofp;
+	FILE *ofp;
 	ofp = fopen("accels.txt", "w");
 	
 	while (i <= data_points){
@@ -128,18 +127,22 @@ int main(int argc, char* argv[])
 				fprintf(ofp, "%x   ", buf[7]);
 			}
 
+			i++;
+
 		}
 
-	}*/
+	}
+
+	i = 0;
 		
 
 
 
-	res = hid_read(handle, buf, 65);
+	//res = hid_read(handle, buf, 65);
 
 	// Print out the returned buffer.
-	for (i = 0; i < 8; i++)
-		printf("buf[%d]: %d\n", i, buf[i]);
+	//for (i = 0; i < 8; i++)
+	//	printf("buf[%d]: %d\n", i, buf[i]);
 
 	// Finalize the hidapi library
 	res = hid_exit();
