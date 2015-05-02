@@ -74,8 +74,8 @@ int main(int argc, char* argv[])
 	buf[2] = row;
 
 	for (int i = 0; i < 25; i++){
-		printf("im here\n");
 		buf[3 + i] = message[i];
+		printf("%c", &message[i]);
 	}
 	
 
