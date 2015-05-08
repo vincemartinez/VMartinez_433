@@ -26,7 +26,7 @@ void PIC32startup(void){
 #pragma config WDTPS = PS1048576 // slowest wdt
 #pragma config WINDIS = OFF // no wdt window
 #pragma config FWDTEN = OFF // wdt off by default
-#pragma config FWDTWINSZ = WINSZ_25 // wdt window at 25%
+//#pragma config FWDTWINSZ = WINSZ_25 // wdt window at 25%
 
 // DEVCFG2 - get the CPU clock to 40MHz
 #pragma config FPLLIDIV = DIV_2 // divide input clock to be in range 4-5MHz
@@ -57,12 +57,14 @@ void PIC32startup(void){
     ANSELBbits.ANSB13=0; //sets up USER pin as input
     U1RXRbits.U1RXR=0b0011;
 
-
-    //RPB7Rbits.RPB7R=0b0001; //sets up LED1 pin as a digital output
-    TRISBbits.TRISB7=0;
+    TRISBbits.TRISB4=0; //sets up B7 as digital output
+    //RPB3Rbits.RPB3R=0b0001; //sets up LED1 pin as a digital output
+    //TRISBbits.TRISB3=0;
 
     ANSELBbits.ANSB15=0; //sets up LED2 pin as digital PWM output
-    RPB15Rbits.RPB15R=0b0101;
+    //TRISBbits.TRISB4=0;
+    RPB7Rbits.RPB7R=0b0101;
+    RPB3Rbits.RPB3R=0b0101;
 
 
     OC1CONbits.OCM=0b110; //enable OC1
@@ -77,9 +79,9 @@ void PIC32startup(void){
     OC2R=0;
     OC2CONbits.ON=1;
 
-    PR2=625-1; //sets up timer 2 to run at 1kHz
+    PR2=3125-1; //sets up timer 2 to run at 50Hz
     TMR2=0;
-    T2CONbits.TCKPS=0b110;
+    T2CONbits.TCKPS=0b111;
     T2CONbits.TGATE=0;
     T2CONbits.TCS=0;
     T2CONbits.ON=1;
