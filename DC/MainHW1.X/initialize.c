@@ -3,6 +3,16 @@
 #include <sys/attribs.h>
 
 
+/* Hi Curtis!!!! to control the speed of the drive motors, change the value of
+ * OC1RS. It ranges from 0 to 625. To change motors 1 and 2
+ * from forward to backward, invert pin B14 (digital output 1). to change
+ * motors 3 and 4 from forward to backward, invert pin B15 (digital output 2).
+ *
+ * To change the position of servo motors 1 and 2, change OC2RS. It ranges
+ * from 85 (-90 degrees) to 385 (90 degrees). To change the position of servo
+ * motors 3 and 4, change OC3RS (it is the same range as OC2RS).*/
+
+
 void PIC32startup(void){
 
     //set up DEVCFGs
@@ -26,7 +36,7 @@ void PIC32startup(void){
 #pragma config WDTPS = PS1048576 // slowest wdt
 #pragma config WINDIS = OFF // no wdt window
 #pragma config FWDTEN = OFF // wdt off by default
-#pragma config FWDTWINSZ = WINSZ_25 // wdt window at 25%
+//#pragma config FWDTWINSZ = WINSZ_25 // wdt window at 25%
 
 // DEVCFG2 - get the CPU clock to 40MHz
 #pragma config FPLLIDIV = DIV_2 // divide input clock to be in range 4-5MHz
@@ -57,12 +67,13 @@ void PIC32startup(void){
     ANSELBbits.ANSB13=0; //sets up USER pin as input
     U1RXRbits.U1RXR=0b0011;
 
-
-    //RPB7Rbits.RPB7R=0b0001; //sets up LED1 pin as a digital output
-    TRISBbits.TRISB7=0;
-
-    ANSELBbits.ANSB3=0; //sets up LED1 pin as digital PWM output
-    RPB3Rbits.RPB3R=0b0101;
+    ANSELBbits.ANSB14=0;
+    TRISBbits.TRISB14=0; //sets B14 to digital output 1 for motor direction
+    TRISBbits.TRISB15=0; //sets B15 to digital output 2 for motor direction
+    
+    RPB7Rbits.RPB7R=0b0101; //sets B7 to PWM signal for drive motor speed
+    RPB8Rbits.RPB8R=0b0101; //sets B8 to PWM signal for servo motor position
+    RPB9Rbits.RPB9R=0b0101; //sets B9 to PWM signal for servo motor position
 
 
     OC1CONbits.OCM=0b110; //enable OC1
@@ -72,17 +83,30 @@ void PIC32startup(void){
     OC1CONbits.ON=1;
 
     OC2CONbits.OCM=0b110; //enable OC2
-    OC2CONbits.OCTSEL=0;
-    OC2RS=0;
+    OC2CONbits.OCTSEL=1;
+    OC2RS=0;  //set OC2RS to 85 for maximum in one direction, 385 for max in other direction
     OC2R=0;
     OC2CONbits.ON=1;
 
-    PR2=625-1; //sets up timer 2 to run at 1kHz
+    OC3CONbits.OCM=0b110; //enable OC3
+    OC3CONbits.OCTSEL=1;
+    OC3RS=0;  //set OC3RS to 85 for maximum in one direction, 385 for max in other direction
+    OC3R=0;
+    OC3CONbits.ON=1;
+
+    PR2=625-1; //sets up timer 2 to run at 1kHz for motor drive
     TMR2=0;
     T2CONbits.TCKPS=0b110;
     T2CONbits.TGATE=0;
     T2CONbits.TCS=0;
     T2CONbits.ON=1;
+
+    PR3=3125-1; //sets up timer 2 to run at 50Hz for servo control
+    TMR3=0;
+    T3CONbits.TCKPS=0b111;
+    T3CONbits.TGATE=0;
+    T3CONbits.TCS=0;
+    T3CONbits.ON=1;
 
     ANSELAbits.ANSA0 = 1; //sets up A0 as AN0
     AD1CON3bits.ADCS = 3;
