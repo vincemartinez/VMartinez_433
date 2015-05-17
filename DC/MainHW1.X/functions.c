@@ -75,3 +75,15 @@ void turn (int degrees){
     drive();
 
 }
+
+void arm(int direction){
+
+    if (direction==UP){
+        OC4RS=85;
+    }
+
+    else if (direction==DOWN){
+        OC4RS=385;
+    }
+
+}
