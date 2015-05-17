@@ -8,7 +8,7 @@
 #ifndef FUNCTIONSCRAIG_H
 #define	FUNCTIONSCRAIG_H
 
-void drive(int percent); //drives forward at a given percent power
+void drive(int percent = 64); //drives forward at a given percent power
 void drive_dist(float dist); //drive a specified distance (inches)
 void drive_off(); //stop driving
 

@@ -3,7 +3,7 @@
 #include <xc.h>
 #define DISTANCE_CONVERSION 40000000 //Tics per inch (need to fine tune)
 
-void drive(int percent)
+void drive(int percent = 64)
 {
     int val = percent*6.25;
     OC1RS = val;
