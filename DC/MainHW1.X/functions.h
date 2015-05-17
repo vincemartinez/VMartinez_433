@@ -15,49 +15,16 @@
 #ifndef FUNCTIONS_H
 #define	FUNCTIONS_H
 
-#define ANAL_CONFERSION=40000000;
+#define ANAL_CONFERSION 40000000
+#define DISTANCE_CONVERSION 40000000 //Tics per inch (need to fine tune)
 
 
-void wait(double seconds){
+void wait(double seconds);
+void drive(int percent = 64);
+void drive_dist(float dist);
+void drive_off();
+void turn (int degrees);
 
-    _CP0_SET_COUNT(0);
-
-    while(_CP0_GET_COUNT()<((double)40000000*seconds)){
-        continue;
-    }
-
-    _CP0_SET_COUNT(0);
-
-}
-
-void turn (int degrees){
-
-    drive_off();
-
-    OC2RS=310;
-    OC3RS=160;
-
-    if(degrees<0){
-        LATBbits.LATB14=1;
-        LATBbits.LATB15=0;
-    }
-
-    else {
-        LATBbits.LATB14=0;
-        LATBbits.LATB15=1;
-    }
-
-    drive();
-    wait(ANAL_CONFERSION*degrees);
-
-    drive_off();
-    
-    OC2RS=235;
-    OC3RS=235;
-
-    drive();
-
-}
 
 
 
