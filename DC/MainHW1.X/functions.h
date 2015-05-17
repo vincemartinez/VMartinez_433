@@ -26,6 +26,7 @@ void drive(int percent = 64);
 void drive_dist(float dist);
 void drive_off();
 void turn (int degrees);
+void arm(int direction);
 
 
 
