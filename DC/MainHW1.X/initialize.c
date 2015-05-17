@@ -74,7 +74,7 @@ void PIC32startup(void){
     RPB7Rbits.RPB7R=0b0101; //sets B7 to PWM signal for drive motor speed
     RPB8Rbits.RPB8R=0b0101; //sets B8 to PWM signal for servo motor position
     RPB9Rbits.RPB9R=0b0101; //sets B9 to PWM signal for servo motor position
-    RPA4Rbits.RPA4R=0b0101; //sets A4 to PWM signal for servo motor position
+    RPA4Rbits.RPA4R=0b0101; //sets A4 to PWM signal for arm servo motor position
 
     OC1CONbits.OCM=0b110; //enable OC1
     OC1CONbits.OCTSEL=0;

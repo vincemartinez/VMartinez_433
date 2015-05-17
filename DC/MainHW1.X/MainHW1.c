@@ -10,6 +10,7 @@
 #include "initialize.h"
 #include <xc.h>
 #include <sys/attribs.h>
+#include "functions.h"
 
 
 

@@ -17,8 +17,8 @@
 
 #define ANAL_CONFERSION 40000000
 #define DISTANCE_CONVERSION 40000000 //Tics per inch (need to fine tune)
-#define UP 1
-#define DOWN 0
+#define UP 85
+#define DOWN 385
 
 
 void wait(double seconds);

@@ -79,11 +79,11 @@ void turn (int degrees){
 void arm(int direction){
 
     if (direction==UP){
-        OC4RS=85;
+        OC4RS=UP;
     }
 
     else if (direction==DOWN){
-        OC4RS=385;
+        OC4RS=DOWN;
     }
 
 }
