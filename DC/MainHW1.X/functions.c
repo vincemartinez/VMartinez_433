@@ -1,7 +1,7 @@
 #include "functions.h"
 
 
-void wait(double seconds){
+/*void wait(double seconds){
 
     _CP0_SET_COUNT(0);
 
@@ -86,4 +86,4 @@ void arm(int direction){
         OC4RS=DOWN;
     }
 
-}
+}*/

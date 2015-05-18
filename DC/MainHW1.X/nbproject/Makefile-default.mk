@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=MainHW1.c initialize.c
+SOURCEFILES_QUOTED_IF_SPACED=MainHW1.c initialize.c functions.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MainHW1.o ${OBJECTDIR}/initialize.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/MainHW1.o.d ${OBJECTDIR}/initialize.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MainHW1.o ${OBJECTDIR}/initialize.o ${OBJECTDIR}/functions.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/MainHW1.o.d ${OBJECTDIR}/initialize.o.d ${OBJECTDIR}/functions.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/MainHW1.o ${OBJECTDIR}/initialize.o
+OBJECTFILES=${OBJECTDIR}/MainHW1.o ${OBJECTDIR}/initialize.o ${OBJECTDIR}/functions.o
 
 # Source Files
-SOURCEFILES=MainHW1.c initialize.c
+SOURCEFILES=MainHW1.c initialize.c functions.c
 
 
 CFLAGS=
@@ -103,6 +103,12 @@ ${OBJECTDIR}/initialize.o: initialize.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/initialize.o 
 	@${FIXDEPS} "${OBJECTDIR}/initialize.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/initialize.o.d" -o ${OBJECTDIR}/initialize.o initialize.c   
 	
+${OBJECTDIR}/functions.o: functions.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/functions.o.d 
+	@${RM} ${OBJECTDIR}/functions.o 
+	@${FIXDEPS} "${OBJECTDIR}/functions.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/functions.o.d" -o ${OBJECTDIR}/functions.o functions.c   
+	
 else
 ${OBJECTDIR}/MainHW1.o: MainHW1.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -115,6 +121,12 @@ ${OBJECTDIR}/initialize.o: initialize.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/initialize.o.d 
 	@${RM} ${OBJECTDIR}/initialize.o 
 	@${FIXDEPS} "${OBJECTDIR}/initialize.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/initialize.o.d" -o ${OBJECTDIR}/initialize.o initialize.c   
+	
+${OBJECTDIR}/functions.o: functions.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/functions.o.d 
+	@${RM} ${OBJECTDIR}/functions.o 
+	@${FIXDEPS} "${OBJECTDIR}/functions.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/functions.o.d" -o ${OBJECTDIR}/functions.o functions.c   
 	
 endif
 

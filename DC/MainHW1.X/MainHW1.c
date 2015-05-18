@@ -18,6 +18,15 @@
  * */
 
 
+/* Sup SLAM!  This is you typing. wow. meta. Motors are labelled on legos next to
+ attachment points, and on the 3D printed connector (you have to look close on the
+ black ones, but it's on there.) Servos 2 and 4 connect to PWM from B9 (the 3x header
+ pins closest to the H-bridge) and servos 1 and 3 attach to B8 (bottom 3x header).
+ Motors 1 and 3 go to output B. And motor 2 and 4 go to output A from the H-bridge. Please
+ * don't fuck with the way the leads go into the screw terminals, as that would
+ * fuck everything up that I just typed... Asshat.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "initialize.h"
@@ -30,14 +39,14 @@
 void main() {
 
     PIC32startup();
-    OC1RS=350;
+    OC1RS=450;
 
     int i=0;
 
 
     while (1) {
 
-        if (i<=2000000){
+        if (i<=5000000){
             LATBbits.LATB14=1;
             LATBbits.LATB15=1;
             OC2RS=235;
@@ -45,7 +54,7 @@ void main() {
             i++;
         }
 
-        else if (i>2000000&&i<4000000){
+        else if (i>5000000&&i<7000000){
             LATBbits.LATB14=1;
             LATBbits.LATB15=0;
             OC2RS=310;
