@@ -50,15 +50,17 @@ void main() {
             LATBbits.LATB14=1;
             LATBbits.LATB15=1;
             OC2RS=235;
-            OC3RS=235;
+            OC3RS=228;
+            OC4RS=235;
             i++;
         }
 
         else if (i>5000000&&i<7000000){
             LATBbits.LATB14=1;
             LATBbits.LATB15=0;
-            OC2RS=310;
-            OC3RS=160;
+            OC2RS=290;
+            OC3RS=180;
+            OC4RS=310;
             i++;
         }
 
