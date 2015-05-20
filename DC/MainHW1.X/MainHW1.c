@@ -38,12 +38,41 @@
 
 void main() {
 
+    int ADC_min=0;
+    int ADC_max=1024;
+
     PIC32startup();
-    OC1RS=450;
-
     int i=0;
+    OC1RS=450;
+    OC5RS=450;
+    /*while(1){
+        
+       int reading=readADC3();
+
+       if (reading>200){
+           LATBbits.LATB15=1;
+           OC1RS=0;
+       }
+       else{
+           LATBbits.LATB15=0;
+           OC1RS=600;
+       }
+
+    }*/
+
+/*
+        ADC1_tune(&ADC_min,&ADC_max);
+        int distance=readADC1();
+
+        if (ADC_min>500&&ADC_max<500){
+            OC1RS=500;
+        }*/
+        
+    
 
 
+
+    
     while (1) {
 
         if (i<=5000000){
@@ -51,7 +80,7 @@ void main() {
             LATBbits.LATB15=1;
             OC2RS=235;
             OC3RS=228;
-            OC4RS=235;
+            OC4RS=370;
             i++;
         }
 
@@ -60,7 +89,7 @@ void main() {
             LATBbits.LATB15=0;
             OC2RS=290;
             OC3RS=180;
-            OC4RS=310;
+            OC4RS=235;
             i++;
         }
 
@@ -69,4 +98,5 @@ void main() {
         }
 
 }
+
 }

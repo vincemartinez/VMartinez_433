@@ -21,12 +21,23 @@
 #define DOWN 385
 
 
-void wait(double seconds);
+
+
+
+void wait(int counts);
 //void drive(int percent = 64);
 void drive_dist(float dist);
 void drive_off();
 void turn (int degrees);
 void arm(int direction);
+
+int readADC1(void);
+int readADC2(void);
+int readADC3(void);
+void LED_correct(int reference, int detected,int kp,int ki,int kd,int divisor);
+double calculate_effort(int reference, int detected, int kp, int ki, int kd);
+int volts_to_duty(double volts, double max_volts, int max_duty);
+double duty_to_volts(int duty, int max_duty, double max_volts);
 
 
 

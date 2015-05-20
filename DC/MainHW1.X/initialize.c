@@ -68,13 +68,15 @@ void PIC32startup(void){
     U1RXRbits.U1RXR=0b0011;
 
     ANSELBbits.ANSB14=0;
+
     TRISBbits.TRISB14=0; //sets B14 to digital output 1 for motor direction
-    TRISBbits.TRISB15=0; //sets B15 to digital output 2 for motor direction
+    TRISBbits.TRISB15=0; //sets B15 to digital output 2 for motor direction (also controls LED2)
     
-    RPB7Rbits.RPB7R=0b0101; //sets B7 to PWM signal for drive motor speed
+    RPB7Rbits.RPB7R=0b0101; //sets B7 to PWM signal for left (or right) drive motor speed (also controls LED3)
     RPB8Rbits.RPB8R=0b0101; //sets B8 to PWM signal for servo motor position
     RPB9Rbits.RPB9R=0b0101; //sets B9 to PWM signal for servo motor position
     RPA4Rbits.RPA4R=0b0101; //sets A4 to PWM signal for arm servo motor position
+    RPB2Rbits.RPB2R=0b0110; //sets B2 to PWM signal for left (or right) drive motor speed
 
     OC1CONbits.OCM=0b110; //enable OC1
     OC1CONbits.OCTSEL=0;
@@ -100,6 +102,23 @@ void PIC32startup(void){
     OC4R=0;
     OC4CONbits.ON=1;
 
+    OC5CONbits.OCM=0b110; //enable OC5
+    OC5CONbits.OCTSEL=0;
+    OC5RS=0;  
+    OC5R=0;
+    OC5CONbits.ON=1;
+
+    /*PR1=1000-1; //sets up timer 1 to run at 5kHz for wall sensor interrupt
+    TMR1=0;
+    T1CONbits.TCKPS=0b01;
+    T1CONbits.TGATE=0;
+    T1CONbits.TCS=0;
+    IPC1bits.T1IP=6;
+    IPC1bits.T1IS=0;
+    IFS0bits.T1IF=0;
+    IEC0bits.T1IE=1;
+    T1CONbits.ON=1;*/
+
     PR2=625-1; //sets up timer 2 to run at 1kHz for motor drive
     TMR2=0;
     T2CONbits.TCKPS=0b110;
@@ -114,28 +133,21 @@ void PIC32startup(void){
     T3CONbits.TCS=0;
     T3CONbits.ON=1;
 
+
+
+
+
+    /*
     ANSELAbits.ANSA0 = 1; //sets up A0 as AN0
     AD1CON3bits.ADCS = 3;
     AD1CHSbits.CH0SA = 0;
     AD1CON1bits.ADON = 1;
+    */
+
+    //ANSELBbits.ANSB13 = 1; //sets up B13 as AN0
 
 }
 
 
-int readADC(void) {
-    int elapsed = 0;
-    int finishtime = 0;
-    int sampletime = 20;
-    int a = 0;
 
-    AD1CON1bits.SAMP = 1;
-    elapsed = _CP0_GET_COUNT();
-    finishtime = elapsed + sampletime;
-    while (_CP0_GET_COUNT() < finishtime) {
-    }
-    AD1CON1bits.SAMP = 0;
-    while (!AD1CON1bits.DONE) {
-    }
-    a = ADC1BUF0;
-    return a;
-}
+
