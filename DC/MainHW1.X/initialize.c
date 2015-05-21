@@ -3,14 +3,23 @@
 #include <sys/attribs.h>
 
 
-/* Hi Curtis!!!! to control the speed of the drive motors, change the value of
- * OC1RS. It ranges from 0 to 625. To change motors 1 and 2
+/* Hi Curtis!!!! to control the speed of the right drive motors, change the value of
+ * OC1RS. to control the speed of the left drive motors, change the value of
+ * OC5RS. It ranges from 0 to 625. To change motors 1 and 2
  * from forward to backward, invert pin B14 (digital output 1). to change
  * motors 3 and 4 from forward to backward, invert pin B15 (digital output 2).
  *
  * To change the position of servo motors 1 and 2, change OC2RS. It ranges
  * from 85 (-90 degrees) to 385 (90 degrees). To change the position of servo
- * motors 3 and 4, change OC3RS (it is the same range as OC2RS).*/
+ * motors 3 and 4, change OC3RS (it is the same range as OC2RS).
+ *
+ * A0=left sensor(top on board), A1=right sensor (middle on board), B0=front
+ * sensor (bottom on board), B1= (top right on board), B3= (bottom right on board)
+ *
+ * left wall sensing function controls left set of wheels (in the directions of motion)
+ * (aka if you were the lego dude driving the robot)
+ *
+ */
 
 
 void PIC32startup(void){
@@ -72,11 +81,11 @@ void PIC32startup(void){
     TRISBbits.TRISB14=0; //sets B14 to digital output 1 for motor direction
     TRISBbits.TRISB15=0; //sets B15 to digital output 2 for motor direction (also controls LED2)
     
-    RPB7Rbits.RPB7R=0b0101; //sets B7 to PWM signal for left (or right) drive motor speed (also controls LED3)
+    RPB7Rbits.RPB7R=0b0101; //sets B7 to PWM signal for left drive motor speed (also controls LED3)
     RPB8Rbits.RPB8R=0b0101; //sets B8 to PWM signal for servo motor position
     RPB9Rbits.RPB9R=0b0101; //sets B9 to PWM signal for servo motor position
     RPA4Rbits.RPA4R=0b0101; //sets A4 to PWM signal for arm servo motor position
-    RPB2Rbits.RPB2R=0b0110; //sets B2 to PWM signal for left (or right) drive motor speed
+    RPB2Rbits.RPB2R=0b0110; //sets B2 to PWM signal for right drive motor speed
 
     OC1CONbits.OCM=0b110; //enable OC1
     OC1CONbits.OCTSEL=0;
@@ -108,17 +117,6 @@ void PIC32startup(void){
     OC5R=0;
     OC5CONbits.ON=1;
 
-    /*PR1=1000-1; //sets up timer 1 to run at 5kHz for wall sensor interrupt
-    TMR1=0;
-    T1CONbits.TCKPS=0b01;
-    T1CONbits.TGATE=0;
-    T1CONbits.TCS=0;
-    IPC1bits.T1IP=6;
-    IPC1bits.T1IS=0;
-    IFS0bits.T1IF=0;
-    IEC0bits.T1IE=1;
-    T1CONbits.ON=1;*/
-
     PR2=625-1; //sets up timer 2 to run at 1kHz for motor drive
     TMR2=0;
     T2CONbits.TCKPS=0b110;
@@ -126,7 +124,7 @@ void PIC32startup(void){
     T2CONbits.TCS=0;
     T2CONbits.ON=1;
 
-    PR3=3125-1; //sets up timer 2 to run at 50Hz for servo control
+    PR3=3125-1; //sets up timer 3 to run at 50Hz for servo control
     TMR3=0;
     T3CONbits.TCKPS=0b111;
     T3CONbits.TGATE=0;
@@ -136,15 +134,6 @@ void PIC32startup(void){
 
 
 
-
-    /*
-    ANSELAbits.ANSA0 = 1; //sets up A0 as AN0
-    AD1CON3bits.ADCS = 3;
-    AD1CHSbits.CH0SA = 0;
-    AD1CON1bits.ADON = 1;
-    */
-
-    //ANSELBbits.ANSB13 = 1; //sets up B13 as AN0
 
 }
 

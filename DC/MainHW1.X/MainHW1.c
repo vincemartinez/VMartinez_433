@@ -38,63 +38,104 @@
 
 void main() {
 
-    int ADC_min=0;
-    int ADC_max=1024;
+    int user = 0;
+
 
     PIC32startup();
     int i=0;
-    OC1RS=450;
-    OC5RS=450;
-    /*while(1){
-        
-       int reading=readADC3();
-
-       if (reading>200){
-           LATBbits.LATB15=1;
-           OC1RS=0;
-       }
-       else{
-           LATBbits.LATB15=0;
-           OC1RS=600;
-       }
-
-    }*/
-
-/*
-        ADC1_tune(&ADC_min,&ADC_max);
-        int distance=readADC1();
-
-        if (ADC_min>500&&ADC_max<500){
-            OC1RS=500;
-        }*/
-        
     
 
 
 
-    
-    while (1) {
+    //ADC1_tune();
+    //ADC2_tune(&ADC_min,&ADC_max);
+    //ADC4_tune();
 
-        if (i<=5000000){
+
+
+    while(!user){
+
+        if (PORTBbits.RB13==0){
+            user=1;
+            wait(250);
+        }
+
+    }
+
+
+    LATBbits.LATB14=1;
+    LATBbits.LATB15=1;
+
+    OC2RS=235;
+    OC3RS=228;
+    OC4RS=235;
+    
+    timer1_initialize();
+
+
+    OC1RS=500;
+    OC5RS=500;
+
+    interrupt_enable();
+
+
+    while (user) {
+
+
+        
+           
+           if (i==0){
             LATBbits.LATB14=1;
             LATBbits.LATB15=1;
             OC2RS=235;
             OC3RS=228;
-            OC4RS=370;
-            i++;
-        }
+            
 
-        else if (i>5000000&&i<7000000){
-            LATBbits.LATB14=1;
-            LATBbits.LATB15=0;
+            int reading5 = readADC5();
+            int reading4 = readADC4();
+
+            if(reading5 >= 100){
+                OC4RS=380;
+            }
+            else if(reading5 < 100){
+                OC4RS=270;
+            }
+            if(reading4>450){
+                i=100;
+            }
+            
+
+            //i++;
+            }
+
+         else if (i=100){
+
+            interrupt_disable();
+            LATBbits.LATB14=0;
+            LATBbits.LATB15=1;
             OC2RS=290;
             OC3RS=180;
-            OC4RS=235;
-            i++;
+            wait(1400);
+            OC2RS=235;
+            OC3RS=228;
+            //user = 0;
+            i=0;
+            timer1_initialize();
+            OC1RS=500;
+            OC5RS=500;
+            interrupt_enable();
+
+         }
+
+        else if(i==50){
+            OC1RS=0;
+            OC5RS=0;
         }
 
-        else {
-            i=0;
+        if (PORTBbits.RB13==0){
+            user=0;
+            OC1RS=0;
+            OC5RS=0;
         }
 
 }

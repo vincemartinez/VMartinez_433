@@ -38,6 +38,10 @@ void LED_correct(int reference, int detected,int kp,int ki,int kd,int divisor);
 double calculate_effort(int reference, int detected, int kp, int ki, int kd);
 int volts_to_duty(double volts, double max_volts, int max_duty);
 double duty_to_volts(int duty, int max_duty, double max_volts);
+void follow_wall_left(int reference, int detected, int kp, int ki, int kd);
+void follow_wall_right(int reference, int detected, int kp, int ki, int kd);
+//total squares (until turn)
+//read sensor
 
 
 
