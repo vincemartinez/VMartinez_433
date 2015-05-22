@@ -100,7 +100,7 @@ void main() {
             else if(reading5 < 100){
                 OC4RS=270;
             }
-            if(reading4>450){
+            if(reading4>460){  //reads the front sensor to initiate turn... 450 is just barely about right
                 i=100;
             }
             
@@ -115,7 +115,7 @@ void main() {
             LATBbits.LATB15=1;
             OC2RS=290;
             OC3RS=180;
-            wait(1400);
+            wait(1600);
             OC2RS=235;
             OC3RS=228;
             //user = 0;

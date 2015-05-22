@@ -13,8 +13,9 @@ static int error_previous=0;
 void __ISR(_TIMER_1_VECTOR,IPL6SOFT) Wall_Sensor_Interrupt(void){
 
     int reading=readADC1();
-    reading*=2;
-    OC5RS=reading;
+    //reading=(int)(reading*1.8);
+
+    OC5RS= reading+50;
     //follow_wall_left(200,reading,1,0,0);
     //follow_wall_right(ADC_max,readADC2(),10,10,1);
     IFS0bits.T1IF = 0;
