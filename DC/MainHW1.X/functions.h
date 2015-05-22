@@ -20,7 +20,8 @@
 #define UP 85
 #define DOWN 385
 
-
+int user;
+int killcount;
 
 
 

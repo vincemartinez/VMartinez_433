@@ -12,6 +12,10 @@ static int error_previous=0;
 
 void __ISR(_TIMER_1_VECTOR,IPL6SOFT) Wall_Sensor_Interrupt(void){
 
+
+
+
+    /*
     int reading=readADC1();
     //reading=(int)(reading*1.8);
 
@@ -19,7 +23,8 @@ void __ISR(_TIMER_1_VECTOR,IPL6SOFT) Wall_Sensor_Interrupt(void){
     //follow_wall_left(200,reading,1,0,0);
     //follow_wall_right(ADC_max,readADC2(),10,10,1);
     IFS0bits.T1IF = 0;
-
+*/
+    IFS0bits.T1IF = 0;
 }
 
 
@@ -28,9 +33,9 @@ void wait(int milliseconds){
 
     int count=milliseconds*20000;
 
-    _CP0_SET_COUNT(0);
+    int time=_CP0_GET_COUNT();
 
-    while(_CP0_GET_COUNT()< count){
+    while((_CP0_GET_COUNT()-time)< count){
         continue;
     }
 
@@ -367,11 +372,11 @@ int readADC5(void) {
 
 void timer1_initialize(void){
 
-    PR1=1000-1; //sets up timer 1 to run at 5kHz for wall sensor interrupt
-    //PR1=31250-1; //5 Hz
+    //PR1=1000-1; //sets up timer 1 to run at 5kHz for wall sensor interrupt
+    PR1=31250-1; //5 Hz
     TMR1=0;
-    T1CONbits.TCKPS=0b01;
-    //T1CONbits.TCKPS=0b11; //256 presscaler
+    //T1CONbits.TCKPS=0b01;
+    T1CONbits.TCKPS=0b11; //256 presscaler
     T1CONbits.TGATE=0;
     T1CONbits.TCS=0;
     

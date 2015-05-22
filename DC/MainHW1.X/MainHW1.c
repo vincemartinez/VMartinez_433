@@ -38,11 +38,13 @@
 
 void main() {
 
-    int user = 0;
+    user = 0;
 
 
     PIC32startup();
-    int i=0;
+    int i=75;
+    _CP0_SET_COUNT(0);
+    killcount=0;
     
 
 
@@ -70,13 +72,15 @@ void main() {
     OC3RS=228;
     OC4RS=235;
     
-    timer1_initialize();
+    //timer1_initialize();
 
 
     OC1RS=500;
     OC5RS=500;
 
-    interrupt_enable();
+
+
+    //interrupt_enable();
 
 
     while (user) {
@@ -85,6 +89,15 @@ void main() {
         
            
            if (i==0){
+
+               int reading=readADC1();
+            //reading=(int)(reading*1.8);
+
+            OC5RS= reading+50;
+            //follow_wall_left(200,reading,1,0,0);
+            //follow_wall_right(ADC_max,readADC2(),10,10,1);
+            //IFS0bits.T1IF = 0;
+
             LATBbits.LATB14=1;
             LATBbits.LATB15=1;
             OC2RS=235;
@@ -100,8 +113,10 @@ void main() {
             else if(reading5 < 100){
                 OC4RS=270;
             }
-            if(reading4>460){  //reads the front sensor to initiate turn... 450 is just barely about right
+            if(reading4>460){  //reads the front sensor to initiate turn... 460 is just barely about right
                 i=100;
+                OC1RS=500;
+                OC5RS=500;
             }
             
 
@@ -110,7 +125,10 @@ void main() {
 
          else if (i=100){
 
-            interrupt_disable();
+
+            //OC1RS=500;
+            //OC5RS=500;
+            //interrupt_disable();
             LATBbits.LATB14=0;
             LATBbits.LATB15=1;
             OC2RS=290;
@@ -120,10 +138,9 @@ void main() {
             OC3RS=228;
             //user = 0;
             i=0;
-            timer1_initialize();
-            OC1RS=500;
-            OC5RS=500;
-            interrupt_enable();
+            
+            //timer1_initialize();
+            //interrupt_enable();
 
          }
 
@@ -138,6 +155,33 @@ void main() {
             OC5RS=0;
         }
 
+           if(_CP0_GET_COUNT()>=400000000){
+               OC1RS = 0;
+               OC5RS = 0;
+               killcount++;
+               if (killcount > 2){
+                   break;
+               }
+               _CP0_SET_COUNT(0);
+           }
+
+           if(i==75){
+            LATBbits.LATB14=0;
+            LATBbits.LATB15=1;
+            OC2RS=290;
+            OC3RS=180;
+
+            if(_CP0_GET_COUNT()>=400000000){
+
+                user=0;
+                OC1RS=0;
+                OC5RS=0;
+
+            }
+
+           }
+
 }
+
 
 }
