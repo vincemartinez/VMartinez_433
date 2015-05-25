@@ -13,8 +13,8 @@
  * from 85 (-90 degrees) to 385 (90 degrees). To change the position of servo
  * motors 3 and 4, change OC3RS (it is the same range as OC2RS).
  *
- * A0=left sensor(top on board), A1=right sensor (middle on board), B0=front
- * sensor (bottom on board), B1= (top right on board), B3= (bottom right on board)
+ * ADC1=A0=left sensor(top on board), ADC2=A1=right sensor (middle on board), ADC4=B0=front
+ * sensor (bottom on board), ADC3=B1= (left side color sensor), ADC5=B3=(right side color sensor)
  *
  * left wall sensing function controls left set of wheels (in the directions of motion)
  * (aka if you were the lego dude driving the robot)

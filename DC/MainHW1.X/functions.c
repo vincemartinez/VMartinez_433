@@ -13,7 +13,7 @@ static int error_previous=0;
 void __ISR(_TIMER_1_VECTOR,IPL6SOFT) Wall_Sensor_Interrupt(void){
 
 
-
+    killcount++;
 
     /*
     int reading=readADC1();
@@ -29,8 +29,8 @@ void __ISR(_TIMER_1_VECTOR,IPL6SOFT) Wall_Sensor_Interrupt(void){
 
 
 
-void wait(int milliseconds){
-
+void wait(int milliseconds)
+{
     int count=milliseconds*20000;
 
     int time=_CP0_GET_COUNT();
@@ -38,9 +38,6 @@ void wait(int milliseconds){
     while((_CP0_GET_COUNT()-time)< count){
         continue;
     }
-
-    _CP0_SET_COUNT(0);
-
 }
 
 /*void LED_correct(int reference, int detected,int kp,int ki,int kd,int divisor){
