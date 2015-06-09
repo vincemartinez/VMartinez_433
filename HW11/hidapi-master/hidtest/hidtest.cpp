@@ -112,20 +112,20 @@ int main(int argc, char* argv[])
 		if (buf[1] == 0x01){
 
 			//print x value to file
-			if (buf[2] == 1){
-				fprintf(ofp, "%c%d   ", negative, buf[3]);
-			}
-			else {
-				fprintf(ofp, "%d   ", buf[3]);
-			}
+			//if (buf[2] == 1){
+			//	fprintf(ofp, "%c%d   ", negative, buf[3]);
+			//}
+			//else {
+			//	fprintf(ofp, "%d   ", buf[3]);
+			//}
 
 			//print y value to file
-			if (buf[4] == 1){
-				fprintf(ofp, "%c%d   ", negative, buf[5]);
-			}
-			else {
-				fprintf(ofp, "%d   ", buf[5]);
-			}
+			//if (buf[4] == 1){
+			//	fprintf(ofp, "%c%d   ", negative, buf[5]);
+			//}
+			//else {
+			//	fprintf(ofp, "%d   ", buf[5]);
+			//}
 
 			//print z value to file
 			if (buf[6] == 1){
